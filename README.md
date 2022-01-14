@@ -1,2 +1,2 @@
 # Test-Guru
-A Tet-Guru project
+A Test-Guru project
