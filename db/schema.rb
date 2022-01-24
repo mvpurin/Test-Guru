@@ -14,13 +14,11 @@ ActiveRecord::Schema.define(version: 2022_01_22_155539) do
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
-    t.integer "user_id", null: false
     t.integer "question_id", null: false
     t.boolean "correct", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -53,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_01_22_155539) do
   end
 
   add_foreign_key "answers", "questions"
-  add_foreign_key "answers", "users"
   add_foreign_key "questions", "tests"
   add_foreign_key "tests", "categories"
 end
