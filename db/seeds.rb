@@ -32,10 +32,7 @@ Test.destroy_all
 tests = Test.create!([{
   title: "About the authors",
   level: 0,
-  # category_id: Category.find_by(title: 'Ruby').id,
-  # user_id: User.find(name: 'Ivan Ivanov').id,
   category_id: categories[0],
-  user_id: users[0],
   created_at: Time.now,
   updated_at: Time.now
 },
@@ -43,7 +40,6 @@ tests = Test.create!([{
   title: "Application area",
   level: 1,
   category_id: Category.find_by(title: 'Ruby on Rails').id,
-  user_id: User.find_by(name: 'Petr Petrov').id,
   created_at: Time.now,
   updated_at: Time.now
 },
@@ -56,24 +52,22 @@ tests = Test.create!([{
 
 }])
 
+p "created #{Test.count} tests"
+
 User.destroy_all
 
 users = User.create([{
   name: 'Ivan Ivanov',
-  test_id: Test.find_by(title: "About the authors").id,
   created_at: Time.now,
   updated_at: Time.now
 },
 {
   name: 'Petr Petrov',
-  test_id: Test.find_by(title: "About the authors").id,
   created_at: Time.now,
   updated_at: Time.now
 }])
 
 p "created #{User.count} users"
-
-p "created #{Test.count} tests"
 
 Question.destroy_all
 
