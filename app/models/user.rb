@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_and_belongs_to_many :tests, join_table: :tests_users
+  has_many :tests, through: :test_users, dependent: :destroy
 end
