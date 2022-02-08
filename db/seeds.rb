@@ -9,20 +9,13 @@
 Category.destroy_all
 
 categories = Category.create!([{
-  title: "Ruby",
-  created_at: Time.now,
-  updated_at: Time.now
+  title: "Ruby"
 },
 {
-  title: "Ruby on Rails",
-  created_at: Time.now,
-  updated_at: Time.now
+  title: "Ruby on Rails"
 },
 {
-  title: "Python",
-  created_at: Time.now,
-  updated_at: Time.now
-
+  title: "Python"
 }])
 
 p "created #{Category.count} categories"
@@ -30,78 +23,103 @@ p "created #{Category.count} categories"
 Test.destroy_all
 
 tests = Test.create!([{
-  title: "About the authors",
-  level: 0,
-  category_id: categories[0],
-  created_at: Time.now,
-  updated_at: Time.now
+  title: "About the language",
+  level: 1,
+  category_id: categories[0].id
 },
 {
-  title: "Application area",
-  level: 1,
-  category_id: Category.find_by(title: 'Ruby on Rails').id,
-  created_at: Time.now,
-  updated_at: Time.now
+  title: "Properties of the language",
+  level: 2,
+  category_id: categories[1].id
 },
 {
-  title: "Abvantages of the language",
-  level: 1,
-  category_id: Category.find_by(title: 'Python').id,
-  created_at: Time.now,
-  updated_at: Time.now
-
+  title: "Usage the language",
+  level: 2,
+  category_id: categories[2].id
 }])
 
 p "created #{Test.count} tests"
 
-User.destroy_all
-
-users = User.create([{
-  name: 'Ivan Ivanov',
-  created_at: Time.now,
-  updated_at: Time.now
-},
-{
-  name: 'Petr Petrov',
-  created_at: Time.now,
-  updated_at: Time.now
-}])
-
-p "created #{User.count} users"
-
 Question.destroy_all
 
-questions = Question.create([{
-  body: "Who is the creater of the Ruby language?",
-  test_id: Test.find_by(title: 'About the authors').id,
-  created_at: Time.now,
-  updated_at: Time.now
+questions = Question.create!([{
+  body: "Who is the creator of the language?",
+  test_id: tests[0].id
 },
 {
-  body: "What are the advantages of the language?",
-  test_id: Test.find_by(title: 'Abvantages of the language').id,
-  created_at: Time.now,
-  updated_at: Time.now
-}
-])
+  body: "When was the language created?",
+  test_id: tests[0].id
+},
+{
+  body: "Is this language dynamic?",
+  test_id: tests[1].id
+},
+{
+  body: "Are there any differences from another languages?",
+  test_id: tests[1].id
+},
+{
+  body: "In what areas the language is used?",
+  test_id: tests[2].id
+},
+{
+  body: "Are there any disadvantages?",
+  test_id: tests[2].id
+}])
 
 p "created #{Question.count} questions"
 
 Answer.destroy_all
 
-answers = Answer.create([{
-  body: 'Yukihiro Matsumoto',
-  question_id: Question.find_by(body: 'What are the advantages of the language?').id,
-  correct: true,
-  created_at: Time.now,
-  updated_at: Time.now
+answers = Answer.create!([{
+  body: "Matz",
+  question_id: questions[0].id,
+  correct: 1
 },
 {
-  body: 'Development speed',
-  question_id: Question.find_by(body: 'Who is the creater of the Ruby language?').id,
-  correct: true,
-  created_at: Time.now,
-  updated_at: Time.now
-}])
+  body: "1995",
+  question_id: questions[1].id,
+  correct: 1
+},
+{
+  body: "yes",
+  question_id: questions[2].id,
+  correct: 1
+},
+{
+  body: "yes",
+  question_id: questions[3].id,
+  correct: 1
+},
+{
+  body: "science, web development",
+  question_id: questions[4].id,
+  correct: 1
+},
+{
+  body: "no",
+  question_id: questions[5].id,
+  correct: 1
+  }])
 
 p "created #{Answer.count} answers"
+
+User.destroy_all
+
+users = User.create!([{
+  name: "Ivan Ivanov"
+},
+{
+  name: "Petr Petrov"
+}])
+
+p "created #{User.count} users"
+
+TestUser.destroy_all
+
+test_users = TestUser.create!([
+  {user_id: users[0].id, test_id: tests[0].id},
+  {user_id: users[1].id, test_id: tests[1].id}
+])
+
+p "created #{TestUser.count} dependents"

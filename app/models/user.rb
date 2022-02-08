@@ -1,11 +1,9 @@
 class User < ApplicationRecord
+  has_many :test_users
+  has_many :tests, through: :test_users, dependent: :destroy
 
-  has_and_belongs_to_many :tests, join_table: :tests_users
-
-
-
-  
-  # def find_test_by_level(level)
-  #   tests.where(level: level)
-  # end
+  def find_test_by_level(level)
+    tests_id = test_users.where(user_id: self.id).pluck(:test_id)
+    tests.where(id: tests_id, level: level)
+  end
 end
