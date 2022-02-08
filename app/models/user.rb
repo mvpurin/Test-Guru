@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :tests, through: :test_users, dependent: :destroy
 
   def find_test_by_level(level)
-    tests_id = test_users.where(user_id: self.id).pluck(:test_id)
-    tests.where(id: tests_id, level: level)
+    Test.joins('JOIN test_users ON tests.id = test_users.test_id').where('test_users.user_id = :id AND tests.level = :level', id: self.id, level: level).select(:name, :title)
   end
 end

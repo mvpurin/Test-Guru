@@ -74,32 +74,32 @@ Answer.destroy_all
 answers = Answer.create!([{
   body: "Matz",
   question_id: questions[0].id,
-  correct: 1
+  correct: true
 },
 {
   body: "1995",
   question_id: questions[1].id,
-  correct: 1
+  correct: true
 },
 {
   body: "yes",
   question_id: questions[2].id,
-  correct: 1
+  correct: true
 },
 {
   body: "yes",
   question_id: questions[3].id,
-  correct: 1
+  correct: true
 },
 {
   body: "science, web development",
   question_id: questions[4].id,
-  correct: 1
+  correct: true
 },
 {
   body: "no",
   question_id: questions[5].id,
-  correct: 1
+  correct: true
   }])
 
 p "created #{Answer.count} answers"
