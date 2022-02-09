@@ -5,6 +5,6 @@ class Test < ApplicationRecord
   has_many :users, through: :test_users, dependent: :destroy
 
   def self.find_test_by_category(category)
-    Test.joins('JOIN categories on tests.category_id = categories.id').where('categories.title = :category', category: category).order('tests.title DESC')
+    Test.joins('JOIN categories on tests.category_id = categories.id').where('categories.title = :category', category: category).order('tests.title DESC').pluck(:title)
   end
 end
