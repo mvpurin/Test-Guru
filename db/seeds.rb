@@ -6,6 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+
+users = User.create!([{
+  name: "Ivan Ivanov"
+},
+{
+  name: "Petr Petrov"
+}])
+
+p "created #{User.count} users"
+
 Category.destroy_all
 
 categories = Category.create!([{
@@ -25,17 +36,20 @@ Test.destroy_all
 tests = Test.create!([{
   title: "About the language",
   level: 1,
-  category_id: categories[0].id
+  category_id: categories[0].id,
+  author_id: users[0].id
 },
 {
   title: "Properties of the language",
   level: 2,
-  category_id: categories[1].id
+  category_id: categories[1].id,
+  author_id: users[0].id
 },
 {
   title: "Usage the language",
   level: 2,
-  category_id: categories[2].id
+  category_id: categories[2].id,
+  author_id: users[1].id
 }])
 
 p "created #{Test.count} tests"
@@ -103,17 +117,6 @@ answers = Answer.create!([{
   }])
 
 p "created #{Answer.count} answers"
-
-User.destroy_all
-
-users = User.create!([{
-  name: "Ivan Ivanov"
-},
-{
-  name: "Petr Petrov"
-}])
-
-p "created #{User.count} users"
 
 TestUser.destroy_all
 
