@@ -6,7 +6,17 @@ class Test < ApplicationRecord
   has_many :test_users
   has_many :users, through: :test_users
 
-  def self.find_test_by_category(category)
-    Test.joins('JOIN categories on tests.category_id = categories.id').where('categories.title = :category', category: category).order('tests.title DESC').pluck(:title)
-  end
+  scope :find_test_by_category, -> (category) {
+    joins(:category)
+    .where(categories: {title: category})
+    .order('tests.title DESC')
+    .pluck(:title)
+  }
+
+  scope :easy, -> {where(level: 0..1)}
+  scope :normal, -> {where(level: 2..4)}
+  scope :hard, -> {where(level: 5..Float::INFINITY)}
+
+  validates :title, presence: true, uniqueness: {scope: :level}
+  validates :level, numericality: {only_integer: true, greater_than_or_equal_to: 1}
 end
