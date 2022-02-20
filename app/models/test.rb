@@ -6,12 +6,14 @@ class Test < ApplicationRecord
   has_many :test_users
   has_many :users, through: :test_users
 
-  scope :find_test_by_category, -> (category) {
-    joins(:category)
-    .where(categories: {title: category})
-    .order('tests.title DESC')
-    .pluck(:title)
-  }
+    scope :find_test_by_cat, -> (category) {
+      joins(:category)
+      .where(categories: {title: category})
+    }
+
+  def self.find_test_by_category(category)
+    find_test_by_cat(category).order('tests.title DESC').pluck(:title)
+  end
 
   scope :easy, -> {where(level: 0..1)}
   scope :normal, -> {where(level: 2..4)}
