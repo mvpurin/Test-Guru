@@ -1,7 +1,10 @@
 class QuestionsController < ApplicationController
+  before_action :find_test
+
+  #rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
+
   def index
-    #byebug
-    @questions = Question.where(:test_id => params[:test_id])
+    find_test
     byebug
   end
 
@@ -10,7 +13,6 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
@@ -25,4 +27,13 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:body, :test_id)
   end
+
+  def find_test
+    byebug
+    @result = Test.find(params[:test_id])
+  end
+
+  # def rescue_with_question_not_found
+  #   render plain: 'Question not found'
+  # end
 end
