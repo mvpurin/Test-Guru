@@ -1,25 +1,22 @@
 class QuestionsController < ApplicationController
-  before_action :find_test, only: %i[index, new, create]
-  before_action :find_question, only: %i[show, destroy]
+  before_action :find_test, only: [:index, :new, :create]
+  before_action :find_question, only: [:show, :destroy]
 
-  # rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    find_test
     render html: @test.questions.map {|question| question.body}
   end
 
   def show
-    find_question
     render html: @question.body
   end
 
   def new
-    find_test
+    byebug
   end
 
   def create
-    byebug
     question = @test.questions.new(question_params)
     if question.save
       render plain: "Good"
@@ -29,13 +26,12 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    question = find_question
-    question.destroy
-
+    @question.destroy
     puts "Question was not deleted" if question.exists?
   end
 
   private
+
   def question_params
     params.require(:question).permit(:body)
   end
@@ -48,7 +44,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   end
 
-  # def rescue_with_question_not_found
-  #   render plain: 'Question not found'
-  # end
+  def rescue_with_question_not_found
+    render plain: 'Question not found'
+  end
 end
