@@ -13,7 +13,6 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    byebug
   end
 
   def create
@@ -27,7 +26,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    puts "Question was not deleted" if question.exists?
+    puts "Question was not deleted" if @question.exists?
   end
 
   private
