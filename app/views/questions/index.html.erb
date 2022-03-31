@@ -1,0 +1,27 @@
+<table>
+  <style>
+    table {
+      border-spacing: 11px 11px
+    }
+  </style>
+  <tr>
+    <th>Test title</th>
+    <th>Questions</th>
+  </tr>
+
+  <%= render @questions %>
+
+  <tr>
+    <td align="center" rowspan=<%= @test.questions.size %>><%= @test.title %></td>
+    <% @test.questions.each do |question| %>
+      <td align="center"><%= question.body %></td>
+    </tr>
+  <% end %> 
+</table>
+
+<tr><%= link_to 'New question', new_test_question_path %></tr>
+<tr><%= link_to 'Delete',
+                question_path(question),
+                method: :delete,
+                data: { confirm: 'Are you sure?'}%>
+</tr>
