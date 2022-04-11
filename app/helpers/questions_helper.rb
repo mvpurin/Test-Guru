@@ -1,6 +1,9 @@
 module QuestionsHelper
   def question_header(question)
-    return "Create New <#{Test.find(@question.test_id).title}> Question" if @question.new_record?
-    return "Edit <#{Test.find(@question.test_id).title}> Question" if @question.persisted?
+    if question.new_record?
+      "Create New <#{Test.find(question.test_id).title}> Question"
+    else
+      "Edit <#{Test.find(question.test_id).title}> Question"
+    end
   end
 end
