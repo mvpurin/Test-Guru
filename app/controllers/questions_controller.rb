@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :find_test, only: [:index, :new, :create]
   before_action :find_question, only: [:show, :edit, :update, :destroy]
-  before_action :save_session_params, only: [:index]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
@@ -33,7 +32,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to action: 'index', test_id: session[:test_id]
+      redirect_to test_questions_path(@question.test_id)
     else
       render :edit
     end
@@ -41,7 +40,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to action: 'index', test_id: session[:test_id]
+    redirect_to test_questions_path(@question.test_id)
   end
 
   private
@@ -52,10 +51,6 @@ class QuestionsController < ApplicationController
 
   def rescue_with_question_not_found
     render plain: 'Question not found'
-  end
-
-  def save_session_params
-    session[:test_id] = params[:test_id]
   end
 
     def find_test
