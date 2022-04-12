@@ -1,3 +1,4 @@
+ <h1><%= question_header(@question) %></h1>
  <%= form_with model: [@test, @question], local: true do |form| %>
   <p>
     <%= form.label :body %><br>
@@ -6,3 +7,5 @@
 
   <p><%= form.submit %></p>
 <% end %>
+
+<%= link_to 'Back', test_questions_path(@question.test_id) %>
