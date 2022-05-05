@@ -1,1 +1,9 @@
-<h1>The <%= @test_passage.test.title %> test was completed! </h1>
+<h1>The "<%= @test_passage.test.title %>" test was completed! </h1>
+
+<h2>
+  <% if pass_the_test?(@test_passage) %>
+    <%= p "The test is passed! Your mark is #{score(@test_passage)*100}%!" %>
+  <% else %>
+    <%= p "The test is failed! Your mark is #{score(@test_passage)*100}%!" %>
+  <% end %>
+</h2>
