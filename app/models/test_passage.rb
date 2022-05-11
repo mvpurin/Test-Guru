@@ -3,6 +3,10 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :current_question, class_name: 'Question', foreign_key: 'current_question_id', optional: true
 
+  before_validation :before_validation_set_first_question, on: :create
+
+  MINIMUM_MARK = 0.85
+
   def completed?
     current_question.nil?
   end
@@ -16,7 +20,19 @@ class TestPassage < ApplicationRecord
     save!
   end
 
-  before_validation :before_validation_set_first_question, on: :create
+  def score
+    correct_questions.to_f / test.questions.count.to_f
+  end
+
+  def pass_the_test?
+    score >= MINIMUM_MARK
+  end
+
+  def question_counter
+    test.questions.ids.index(current_question.id) + 1
+  end
+
+  
 
   private
 
