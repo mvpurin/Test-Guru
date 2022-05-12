@@ -1,15 +1,15 @@
 <h1>The "<%= @test_passage.test.title %>" test was done! </h1>
 
 <h2>
-  <% if pass_the_test?(@test_passage) %>
+  <% if @test_passage.pass_the_test? %>
     The test is passed! Your mark is 
     <span class="green"> 
-      <%= "#{score(@test_passage)*100}%" %>  
+      <%= "#{@test_passage.score*100}%" %>  
     </span>
   <% else %>
     The test is failed! Your mark is
     <span class="red">
-    <%= "#{score(@test_passage)*100}%" %>
+    <%= "#{@test_passage.score*100}%" %>
     </span>
   <% end %>
 </h2>

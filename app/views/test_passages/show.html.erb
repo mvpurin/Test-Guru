@@ -15,4 +15,4 @@
   <p><%= form.submit 'Next' %></p>
 <% end %>
 
-<p>Question <%= question_counter(@test_passage) %> / <%= @test_passage.test.questions.count %> </p>
+<p>Question <%= @test_passage.question_counter %> / <%= @test_passage.test.questions.count %> </p>
