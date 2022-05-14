@@ -78,14 +78,3 @@ answers = Answer.create!(
 )
 
 p "created #{Answer.count} answers"
-
-TestUser.destroy_all
-
-test_users = TestUser.create!(
-  [
-    {user_id: users[0].id, test_id: tests[0].id},
-    {user_id: users[1].id, test_id: tests[1].id}
-  ]
-)
-
-p "created #{TestUser.count} dependents"
