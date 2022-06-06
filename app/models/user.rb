@@ -9,9 +9,13 @@ class User < ApplicationRecord
     Test.joins('JOIN test_users ON tests.id = test_users.test_id').where('test_users.user_id = :id AND tests.level = :level', id: self.id, level: level).pluck(:title)
   end
 
-  validates :email, presence: true
+  validates :email, presence: true, format: {with: /[a-z0-9_]+@[a-z0-9]+\.[a-z]+/}
 
   def test_passage(test)
     test_passages.order(id: :desc).find_by(test_id: test.id)
+  end
+
+  def exception
+    render message
   end
 end

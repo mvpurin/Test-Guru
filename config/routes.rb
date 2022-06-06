@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'users/new'
   get :signup, to: 'users#new'
   get :login, to: 'sessions#new'
+  get :logout, to: 'sessions#destroy'
+  get :about, to: 'about#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :tests do
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: :create 
-  resources :sessions, only: :create
+  resources :sessions, only: %i[create show]
 
-  root to: 'questions#index'
+  root to: 'main#index'
 end

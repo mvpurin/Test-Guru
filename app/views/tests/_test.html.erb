@@ -3,3 +3,9 @@
   <td><%= test.questions.size %></td>
   <td><%= button_to 'Start', start_test_path(test) %></td>
 </tr>
+
+<td><%= link_to 'Logout',
+                controller: :sessions,
+                action: :destroy,
+                data: {confirm: 'Are you sure?'} %>
+</td>
