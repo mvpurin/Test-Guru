@@ -10,16 +10,22 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to cookies[:return_to]
+      if cookies[:return_to].nil?
+        redirect_to root_path
+      else    
+        redirect_to cookies[:return_to]
+      end
+      cookies[:return_to] = nil
+      # redirect_to cookies.delete(:return_to) || root_path
     else
-      flash.now[:alert] = 'Are you a Guru? Verify your Email and Password please!'
+      flash[:alert] = 'Are you a Guru? Verify your Email and Password please!'
       render :new
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    flash.now[:alert] = 'You have succesfully logged out!'
+    session.delete(:user_id)
+    flash[:alert] = 'You have succesfully logged out!'
     redirect_to root_path
   end
 end

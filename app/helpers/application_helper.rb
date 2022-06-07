@@ -11,5 +11,8 @@ module ApplicationHelper
     if flash[:alert]
       content_tag :p, flash[:alert], class: 'flash alert'
     end
+    if flash.now[:alert]
+      content_tag :p, flash[:alert], class: 'flash alert'
+    end
   end
 end

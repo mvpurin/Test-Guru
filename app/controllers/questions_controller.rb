@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.new(question_params)
 
     if @question.save
-      redirect_to @question
+      redirect_to test_questions_path(@question.test_id)
     else
       render :new
     end

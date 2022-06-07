@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user!
-    cookies[:return_to] = Rails.application.routes.recognize_path(request.referer)
+    cookies[:return_to] = request.path
     unless current_user
       redirect_to login_path, alert: 'Are you a Guru? Verify your Email and Password please'
     end
