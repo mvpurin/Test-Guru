@@ -12,20 +12,19 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       if cookies[:return_to].nil?
         redirect_to root_path
-      else    
+      else
         redirect_to cookies[:return_to]
       end
       cookies[:return_to] = nil
-      # redirect_to cookies.delete(:return_to) || root_path
     else
-      flash[:alert] = 'Are you a Guru? Verify your Email and Password please!'
+      flash.now[:alert] = 'Are you a Guru? Verify your Email and Password please!'
       render :new
     end
   end
 
   def destroy
     session.delete(:user_id)
-    flash[:alert] = 'You have succesfully logged out!'
+    flash.now[:alert] = 'You have succesfully logged out!'
     redirect_to root_path
   end
 end

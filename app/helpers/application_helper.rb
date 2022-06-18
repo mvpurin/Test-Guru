@@ -7,12 +7,20 @@ module ApplicationHelper
     link_to "Test-Guru", "https://github.com/mvpurin/Test-Guru"
   end
 
+  # def flash_message
+  #   if flash.any?
+  #     flash.map do |key, message|
+  #       content_tag :p, message, id: :key, class: 'flash'
+  #     end.join.html_safe
+  #   end
+  # end
+
   def flash_message
-    if flash[:alert]
-      content_tag :p, flash[:alert], class: 'flash alert'
-    end
-    if flash.now[:alert]
-      content_tag :p, flash[:alert], class: 'flash alert'
-    end
+    flash.map do |key, message|
+      content_tag :p, message, id: :key, class: 'flash' if flash[key]
+    end.join.html_safe
   end
+
 end
+
+
