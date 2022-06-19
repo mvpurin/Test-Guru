@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       render :new
     end
   end
-
+          
   def destroy
     session.delete(:user_id)
     flash.now[:alert] = 'You have succesfully logged out!'
