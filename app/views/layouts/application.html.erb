@@ -16,7 +16,15 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <p class="nav">Welcome, <b><%= current_user.email %></b> <%= link_to 'Guru', root_path %> </p>
+      <p class="nav"><%= logout %></p>
+    <% end %>
+
+    <%= flash_message %>
+
     <%= yield %>
+
     <div>
     <div class="footer">
       <%= render "layouts/footer" %>

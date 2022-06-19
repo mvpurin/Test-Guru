@@ -1,0 +1,14 @@
+<table>
+    <tr>Welcome, <%= link_to 'Guru', root_path %>!</tr>
+  <tr>
+    <td><%= link_to 'Sign in',
+                    controller: :users,
+                    action: :new%>
+    </td>
+
+    <td><%= link_to 'Log in',
+                    controller: :sessions,
+                    action: :new %>
+    </td>
+  </tr>
+</table>

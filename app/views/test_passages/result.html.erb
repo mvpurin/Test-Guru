@@ -4,12 +4,12 @@
   <% if @test_passage.pass_the_test? %>
     The test is passed! Your mark is 
     <span class="green"> 
-      <%= "#{@test_passage.score*100}%" %>  
+      <%= "#{@test_passage.score}%" %>  
     </span>
   <% else %>
     The test is failed! Your mark is
     <span class="red">
-    <%= "#{@test_passage.score*100}%" %>
+    <%= "#{@test_passage.score}%" %>
     </span>
   <% end %>
 </h2>
