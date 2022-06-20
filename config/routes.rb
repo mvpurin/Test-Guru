@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get :signup, to: 'users#new'
-  get :login, to: 'sessions#new'
-  get :logout, to: 'sessions#destroy'
+
+  devise_for :users
+  
   get :about, to: 'about#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -20,9 +20,6 @@ Rails.application.routes.draw do
       get :result
     end
   end
-
-  resources :users, only: :create 
-  resources :sessions, only: %i[create show]
 
   root to: 'main#index'
 end
