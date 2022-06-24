@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get :about, to: 'about#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :tests do
+  resources :tests, only: :index do
     resources :questions, shallow: true do
       resources :answers, shallow: true
     end
@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     member do
       get :result
     end
+  end
+
+  namespace :admin do
+    resources :tests, :questions
   end
 
   root to: 'main#index'

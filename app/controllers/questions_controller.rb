@@ -13,46 +13,46 @@ class QuestionsController < ApplicationController
 
   end
 
-  def new
-    @question = @test.questions.new
-  end
+  # def new
+  #   @question = @test.questions.new
+  # end
 
-  def create
-    @question = @test.questions.new(question_params)
+  # def create
+  #   @question = @test.questions.new(question_params)
 
-    if @question.save
-      redirect_to test_questions_path(@question.test_id)
-    else
-      render :new
-    end
-  end
+  #   if @question.save
+  #     redirect_to test_questions_path(@question.test_id)
+  #   else
+  #     render :new
+  #   end
+  # end
 
-  def edit
+  # def edit
 
-  end
+  # end
 
-  def update
-    if @question.update(question_params)
-      redirect_to test_questions_path(@question.test_id)
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @question.update(question_params)
+  #     redirect_to test_questions_path(@question.test_id)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def destroy
-    @question.destroy
-    redirect_to test_questions_path(@question.test_id)
-  end
+  # def destroy
+  #   @question.destroy
+  #   redirect_to test_questions_path(@question.test_id)
+  # end
 
-  private
+  # private
 
-  def question_params
-    params.require(:question).permit(:body)
-  end
+  # def question_params
+  #   params.require(:question).permit(:body)
+  # end
 
-  def rescue_with_question_not_found
-    render plain: 'Question not found'
-  end
+  # def rescue_with_question_not_found
+  #   render plain: 'Question not found'
+  # end
 
     def find_test
     @test = Test.find(params[:test_id])
