@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :tests, :questions
+    resources :tests, shallow: true do
+      resources :questions, shallow: true
+        resources :answers, shallow: true
+      end
   end
 
   root to: 'main#index'
