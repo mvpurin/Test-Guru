@@ -20,7 +20,7 @@ class Admin::QuestionsController < Admin::BaseController
 
   def create
     @question = @test.questions.new(question_params)
-
+    
     if @question.save
       redirect_to admin_test_questions_path(@question.test_id)
     else
@@ -55,7 +55,7 @@ class Admin::QuestionsController < Admin::BaseController
     render plain: 'Question not found'
   end
 
-    def find_test
+  def find_test
     @test = Test.find(params[:test_id])
   end
 

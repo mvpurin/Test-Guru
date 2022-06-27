@@ -6,9 +6,13 @@
   </style>
   <tr>
     <th>Test title</th>
+    <th>Level</th>
     <th>Number of questions</th>
   </tr>
   <tr>
     <td><%= render @tests %></td>
+  </tr>
+  <tr>
+    <td>  <%= link_to 'New test', new_admin_test_path %></td>
   </tr>
 </table>
