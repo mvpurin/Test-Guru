@@ -1,16 +1,9 @@
 class Admin::TestsController < Admin::BaseController
 
-  before_action :authenticate_user!
   before_action :find_test, only: :destroy
   
   def index
     @tests = Test.all
-  end
-
-  def start
-    @test = Test.find(params[:id])
-    current_user.tests.push(@test)
-    redirect_to current_user.test_passage(@test)
   end
 
   def new
@@ -20,7 +13,7 @@ class Admin::TestsController < Admin::BaseController
   def create
     @test = current_user.created_tests.new(test_params)
 
-    if @test.save!
+    if @test.save
       redirect_to admin_tests_path
     else
       render :new
