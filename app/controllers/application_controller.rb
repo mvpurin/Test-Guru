@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
-  after_action :hello, only: :after_sign_in_path_for
+  around_action :hello, only: :after_sign_in_path_for
 
 
   def after_sign_in_path_for(resource)
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def hello
-    flash[:notice] = "Hello, #{resource.first_name} #{resource.last_name}!" if current_user.present?
+    flash.now[:alert] = "Hello, #{current_user.first_name} #{current_user.last_name}!" if current_user.present?
   end
 
 end

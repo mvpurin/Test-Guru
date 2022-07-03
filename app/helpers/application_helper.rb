@@ -9,6 +9,7 @@ module ApplicationHelper
   end
 
   def flash_message
+    rendered = []
     flash.map do |key, message|
       content_tag :p, message, id: :key, class: 'flash' if flash[key]
     end.join.html_safe
