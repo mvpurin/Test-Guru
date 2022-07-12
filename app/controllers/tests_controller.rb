@@ -1,5 +1,5 @@
 class TestsController < ApplicationController 
-
+  
   def index
     @tests = Test.all
   end
@@ -9,4 +9,5 @@ class TestsController < ApplicationController
     current_user.tests.push(@test)
     redirect_to current_user.test_passage(@test)
   end
+  
 end

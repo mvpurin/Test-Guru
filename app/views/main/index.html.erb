@@ -1,6 +1,4 @@
-<% if logged_in? %>
-  <%= render 'form2' %>
-<% else %>
+<% if !user_signed_in?  %>
   <%= render 'form1' %>
 <% end %>
 
