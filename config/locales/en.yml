@@ -31,3 +31,37 @@
 
 en:
   hello: "Hello world"
+  back: "Back"
+  confirm: "Are you sure?"
+  logout: "Logout"
+
+  helpers:
+    submit:
+      test:
+        create: "Create test"
+        update: "Update test"
+    label:
+      test:
+        title: "Title"
+        level: "Level"
+        category_id: "Category"
+
+  tests:
+    index:
+      title: "Test title"
+      number: "Number of questions"
+      start: "Start"
+
+  admin:
+    tests:
+      new:
+        header: "Create new test"
+      create:
+        success: "Test was succesfully created!"
+      index:
+        title: "Test title"
+        level: "Level"
+        number: "Number of questions"
+        new_test: "New test"
+        edit: "Edit"
+        delete: "Delete"
