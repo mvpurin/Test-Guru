@@ -5,14 +5,14 @@
     }
   </style>
   <tr>
-    <th>Test title</th>
-    <th>Level</th>
-    <th>Number of questions</th>
+    <th><%= t('.title') %></th>
+    <th><%= t('.level') %></th>
+    <th><%= t('.number') %></th>
   </tr>
   <tr>
     <td><%= render @tests %></td>
   </tr>
   <tr>
-    <td>  <%= link_to 'New test', new_admin_test_path %></td>
+    <td>  <%= link_to t('.new_test'), new_admin_test_path %></td>
   </tr>
 </table>
