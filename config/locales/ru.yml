@@ -1,0 +1,38 @@
+ru:
+  hello: 'Привет'
+  back: "Назад"
+  confirm: "Вы уверены?"
+  logout: "Выход"
+
+  helpers:
+    submit:
+      test:
+        create: "Создать тест"
+        update: "Обновить тест"
+    label:
+      test:
+        title: "Название"
+        level: "Уровень"
+        category_id: "Категория"
+    select:
+      prompt: "Выберите..."
+
+  tests:
+    index:
+      title: "Название теста"
+      number: "Количество вопросов"
+      start: "Начать"
+
+  admin:
+    tests:
+      new:
+        header: "Создать новый тест"
+      create:
+        success: "Тест успешно создан!"
+      index:
+        title: "Название теста"
+        level: "Уровень"
+        number: "Количество вопросов"
+        new_test: "Новый тест"
+        edit: "Редактировать"
+        delete: "Удалить"

@@ -1,0 +1,17 @@
+<h1>The "<%= @test_passage.test.title %>" test was done! </h1>
+
+<h2>
+  <% if @test_passage.pass_the_test? %>
+    The test is passed! Your mark is 
+    <span class="green"> 
+      <%= "#{@test_passage.score}%" %>  
+    </span>
+  <% else %>
+    The test is failed! Your mark is
+    <span class="red">
+    <%= "#{@test_passage.score}%" %>
+    </span>
+  <% end %>
+</h2>
+
+<p><%= link_to 'All tests', tests_path %></p>
