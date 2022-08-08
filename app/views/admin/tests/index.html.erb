@@ -1,18 +1,21 @@
-<table>
-  <style>
-    table {
-      border-spacing: 11px 11px
-    }
-  </style>
-  <tr>
-    <th><%= t('.title') %></th>
-    <th><%= t('.level') %></th>
-    <th><%= t('.number') %></th>
-  </tr>
-  <tr>
-    <td><%= render @tests %></td>
-  </tr>
-  <tr>
-    <td>  <%= link_to t('.new_test'), new_admin_test_path %></td>
-  </tr>
-</table>
+<div class="row justify-content-center mt-3">
+  <div class="col col-md-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col"><%= t('.title') %></th>
+        <th class="col"><%= t('.level') %></th>
+        <th class="col"><%= t('.number') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= render @tests %><</td>
+      </tr>
+      <tr>
+        <td><%= link_to t('.new_test'), new_admin_test_path, class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>

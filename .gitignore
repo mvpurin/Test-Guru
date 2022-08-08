@@ -40,6 +40,6 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignore tmp/cache
+# Ignore tmp/cache, node_modules
 tmp/cache/
 node_modules/
