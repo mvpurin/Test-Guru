@@ -10,8 +10,8 @@ User.destroy_all
 
 users = User.create!(
   [
-    {name: "Ivan Ivanov", email: "ivan_ivanov@email.com"},
-    {name: "Petr Petrov", email: "petr_petrov@email.com"}
+    {first_name: "Ivan", last_name: "Ivanov", email: "ivan@example.com", password: "123456"},
+    {first_name: "Petr", last_name: "Petrov", email: "petr@example.com", password: "123456"}
   ]
 )
 

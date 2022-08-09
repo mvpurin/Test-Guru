@@ -1,4 +1,10 @@
-<% if !user_signed_in?  %>
-  <%= render 'form1' %>
-<% end %>
-
+<div class="row justify-content-center mt-3">
+  <div class="col col-md-4">
+    <h2>Welcome to the TestGuru app!</h2>
+    <% if current_user.admin? %>
+      <%= link_to 'Admin Panel', admin_tests_path %>
+    <% else %>
+      <%= link_to 'See tests list', tests_path %>
+    <% end %>
+  </div>
+</div>
