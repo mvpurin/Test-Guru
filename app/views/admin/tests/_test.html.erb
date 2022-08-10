@@ -2,9 +2,10 @@
   <td><%= test.title %></td>
   <td><%= test.level %></td>
   <td><%= test.questions.size %></td>
-  <td><%= link_to t('admin.tests.index.edit'), admin_test_questions_path(test) %></td>
+  <td><%= link_to t('admin.tests.index.edit'), admin_test_questions_path(test), class: "btn btn-warning" %></td>
   <td><%= link_to t('admin.tests.index.delete'),
-                  admin_test_path(test),
+                  admin_test_path(test), 
+                  class: "btn btn-danger",
                   method: :delete,
                   data: {confirm: t('confirm')}%>
   </td>

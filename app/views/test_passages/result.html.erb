@@ -1,17 +1,17 @@
-<h1>The "<%= @test_passage.test.title %>" test was done! </h1>
+<div class="row justify-content-center mt-3">
+  <div class="col col-md-4">
+    <h1>The "<%= @test_passage.test.title %>" test was done! </h1>
 
-<h2>
-  <% if @test_passage.pass_the_test? %>
-    The test is passed! Your mark is 
-    <span class="green"> 
-      <%= "#{@test_passage.score}%" %>  
-    </span>
-  <% else %>
-    The test is failed! Your mark is
-    <span class="red">
-    <%= "#{@test_passage.score}%" %>
-    </span>
-  <% end %>
-</h2>
+    <h2>
+      <% if @test_passage.pass_the_test? %>
+        The test is passed! Your mark is 
+        <span class="text-success"> <%= "#{@test_passage.score}%" %></span>
+      <% else %>
+        The test is failed! Your mark is
+        <span class="text-danger"> <%= "#{@test_passage.score}%" %></span>
+      <% end %>
+    </h2>
 
-<p><%= link_to 'All tests', tests_path %></p>
+    <p><%= link_to 'All tests', tests_path %></p>
+  </div>
+</div>
