@@ -39,10 +39,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-<<<<<<< HEAD
-=======
 
 # Ignore tmp/cache, node_modules
 tmp/cache/
 node_modules/
->>>>>>> part13
