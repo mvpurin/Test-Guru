@@ -54,6 +54,11 @@ en:
       number: "Number of questions"
       start: "Start"
 
+  test_passages:
+    gist:
+      success: "Gist was succesfully created!"
+      failure: "An error occured while saving a gist"
+
   admin:
     tests:
       new:
