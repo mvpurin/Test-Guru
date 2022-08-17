@@ -1,9 +1,11 @@
+require 'octokit'
+
 class GistQuestionService
 
 	def initialize(question, client: nil)
 		@question = question
 		@test = @question.test
-		@client = client || GitHubClient.new
+		@client = client || Octokit::Client.new(:access_token => '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')
 	end
 
 	def call
@@ -11,6 +13,10 @@ class GistQuestionService
 	end
 
 	private
+
+	Octokit.configure do |c|
+		c.api_endpoint = 'https://api.github.com'
+	end
 
 	def gist_params
 		{
