@@ -3,11 +3,11 @@ class TestPassagesController < ApplicationController
   before_action :set_test_passage, only: %i[show update result gist]
 
   def show
-    
+
   end
 
   def result
-    
+
   end
 
   def update
@@ -24,10 +24,10 @@ class TestPassagesController < ApplicationController
   def gist
     result = GistQuestionService.new(@test_passage.current_question).call
 
-    flash_options = if result.success?
-      { notice: t('success') }
+    flash_options = if response.code == '200'
+      { notice: t('test_passages.gist.success').insert(-1, "#{helpers.link_to "", "#{result.url}"}").html_safe }
     else
-      { alert: t('failure') }
+      { alert: t('test_passages.gist.failure') }
     end
 
     redirect_to @test_passage, flash_options
@@ -38,5 +38,5 @@ class TestPassagesController < ApplicationController
   def set_test_passage
     @test_passage = TestPassage.find(params[:id])
   end
-  
+
 end
