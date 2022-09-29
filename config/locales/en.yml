@@ -56,8 +56,13 @@ en:
 
   test_passages:
     gist:
-      success: "Gist was succesfully created! Go <a href="#{url}" target="_blank">this link</a> to see Gist "
+      success: "Gist was succesfully created! Go %{url} to see Gist"
       failure: "An error occured while saving a gist"
+
+  services:
+    gist_question:
+      gist_params:
+        question_about: "A question about %{test_title} from TestGuru"
 
   admin:
     tests:

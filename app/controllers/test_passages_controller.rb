@@ -26,7 +26,7 @@ class TestPassagesController < ApplicationController
     byebug
 
     flash_options = if GistQuestionService.client.last_response.status == 201
-      { notice: t('test_passages.gist.success', :url => "GistQuestionService.client.last_response.data.url") }
+      { notice: t('test_passages.gist.success', url: GistQuestionService.client.last_response.data.url) }
     else
       { alert: t('test_passages.gist.failure') }
     end

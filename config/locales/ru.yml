@@ -25,8 +25,13 @@ ru:
 
   test_passages:
     gist:
-      success: "Gist успешно сохранен здесь <a href="#{url}" target="_blank">  </a>"
+      success: "Gist успешно сохранен здесь %{url}"
       failure: "Во время сохранения gist произошла ошибка"
+
+  services:
+    gist_question:
+      gist_params:
+        question_about: "Вопрос %{test_title} из TestGuru"
 
   admin:
     tests:
