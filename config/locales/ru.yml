@@ -25,7 +25,7 @@ ru:
 
   test_passages:
     gist:
-      success: "Gist успешно сохранен!"
+      success: "Gist успешно сохранен здесь <a href="#{url}" target="_blank">  </a>"
       failure: "Во время сохранения gist произошла ошибка"
 
   admin:

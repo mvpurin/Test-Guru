@@ -5,11 +5,16 @@ class GistQuestionService
 	def initialize(question, client: nil)
 		@question = question
 		@test = @question.test
-		@client = client || Octokit::Client.new(:access_token => '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')
+		@client = client || Octokit::Client.new(:access_token => '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')
+		@@client = @client
 	end
 
 	def call
 		@client.create_gist(gist_params)
+	end
+
+	def self.client
+		@@client
 	end
 
 	private

@@ -56,7 +56,7 @@ en:
 
   test_passages:
     gist:
-      success: "Gist was succesfully created!"
+      success: "Gist was succesfully created! Go <a href="#{url}" target="_blank">this link</a> to see Gist "
       failure: "An error occured while saving a gist"
 
   admin:

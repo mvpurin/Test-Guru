@@ -23,9 +23,10 @@ class TestPassagesController < ApplicationController
 
   def gist
     result = GistQuestionService.new(@test_passage.current_question).call
+    byebug
 
-    flash_options = if response.code == '200'
-      { notice: t('test_passages.gist.success').insert(-1, "#{helpers.link_to "", "#{result.url}"}").html_safe }
+    flash_options = if GistQuestionService.client.last_response.status == 201
+      { notice: t('test_passages.gist.success', :url => "GistQuestionService.client.last_response.data.url") }
     else
       { alert: t('test_passages.gist.failure') }
     end
