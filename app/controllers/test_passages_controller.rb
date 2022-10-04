@@ -23,6 +23,7 @@ class TestPassagesController < ApplicationController
 
   def gist
     result = GistQuestionService.new(@test_passage.current_question).call
+    @test_passage.user.gists.create(question: result.description, url: result.url, user_id: current_user.id)
     byebug
 
     flash_options = if GistQuestionService.client.last_response.status == 201
