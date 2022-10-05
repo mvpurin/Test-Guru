@@ -2,7 +2,7 @@
   <div class="col col-md-4">
     <table class="table">
       <thead>
-        <tr>
+        <tr align="center">
           <th>Test title</th>
           <th>Questions</th>
           <th align="center", colspan="3">Action</th>
@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         <tr>
-          <td align="center" rowspan="0"><%= @test.title%></td>
+          <td align="center", rowspan="0"><%= @test.title%></td>
           <td><%= render @test.questions %></td>
         </tr>
       </tbody>
