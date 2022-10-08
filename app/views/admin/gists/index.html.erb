@@ -1,5 +1,5 @@
 <div class="row justify-content-center mt-3">
-  <div class="col col-md-4 text-center">
+  <div class="col col-md-6 text-center">
     <table class="table">
       <thead>
         <tr>
@@ -12,9 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th><%= render @gists %></th>
-        </tr>
+        <% @gists.map do |gist| %>
+          <%= content_tag :tr do %>
+            <%= content_tag :th, Question.find(id=gist.question_id).body %>
+            <%= content_tag :th, gist.url %>
+            <%= content_tag :th, User.find(id=gist.user_id).email %>
+          <% end %>
+        <% end %>
       </tbody>
     </table>
   </div>

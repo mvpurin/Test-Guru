@@ -23,8 +23,8 @@ class TestPassagesController < ApplicationController
 
   def gist
     result = GistQuestionService.new(@test_passage.current_question).call
-    @test_passage.user.gists.create(question: result.description, url: result.url, user_id: current_user.id)
     byebug
+    @test_passage.user.gists.create(question_title: result.description, url: result.url, user_id: current_user.id, question_id: @test_passage.current_question_id)
 
     flash_options = if GistQuestionService.client.last_response.status == 201
       { notice: t('test_passages.gist.success', url: GistQuestionService.client.last_response.data.url) }
