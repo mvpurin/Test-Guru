@@ -1,7 +1,7 @@
 class CreateGists < ActiveRecord::Migration[6.0]
   def change
     create_table :gists do |t|
-      t.string :question_title, null: false
+      t.string :question_gist, null: false
       t.string :url, null: false
 
       t.references :user, foreign_key: true, null: false
