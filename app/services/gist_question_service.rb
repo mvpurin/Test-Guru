@@ -2,20 +2,22 @@ require 'octokit'
 
 class GistQuestionService
 
+  attr_reader :client
+
 	def initialize(question, client: nil)
 		@question = question
 		@test = @question.test
-		@client = client || Octokit::Client.new(:access_token => ENV['GITHUB_GISTS_ACCESS_TOKEN'])
-		@@client = @client
+		@client = client || Octokit::Client.new(access_token: ENV['GITHUB_GISTS_ACCESS_TOKEN'])
+		# @@client = @client
 	end
 
 	def call
 		@client.create_gist(gist_params)
 	end
 
-	def self.client
-		@@client
-	end
+	# def self.client
+	# 	@@client
+	# end
 
 	private
 

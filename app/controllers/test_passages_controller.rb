@@ -22,17 +22,20 @@ class TestPassagesController < ApplicationController
   end
 
   def gist
-    result = GistQuestionService.new(@test_passage.current_question).call
-    byebug
-    @test_passage.user.gists.create(question_gist: result.to_json, url: result.url, user_id: current_user.id, question_id: @test_passage.current_question_id)
+    @gist_question_service = GistQuestionService.new(@test_passage.current_question)
+    result = @gist_question_service.call
+    
+     if success?
+       @test_passage.user.gists.create(question_info: result.to_json, url: result.url, user_id: current_user.id, question_id: @test_passage.current_question_id)
+       flash.notice = t('test_passages.gist.success', url: @gist_question_service.client.last_response.data.url).html_safe
+     else
+       flash.alert = t('test_passages.gist.failure')
+     end
+     redirect_to @test_passage
+  end
 
-    flash_options = if GistQuestionService.client.last_response.status == 201
-      { notice: t('test_passages.gist.success', url: GistQuestionService.client.last_response.data.url).html_safe }
-    else
-      { alert: t('test_passages.gist.failure') }
-    end
-
-    redirect_to @test_passage, flash_options
+  def success?
+    @gist_question_service.client.last_response.status == 201
   end
 
   private

@@ -44,5 +44,5 @@ yarn-debug.log*
 tmp/cache/
 node_modules/
 
-# Ignore app/.env environment variables
-app/.env
+# Ignore environment variables
+.env

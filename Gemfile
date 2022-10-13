@@ -2,6 +2,7 @@
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 ruby '3.0.2'
 
