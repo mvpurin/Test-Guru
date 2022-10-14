@@ -8,16 +8,11 @@ class GistQuestionService
 		@question = question
 		@test = @question.test
 		@client = client || Octokit::Client.new(access_token: ENV['GITHUB_GISTS_ACCESS_TOKEN'])
-		# @@client = @client
 	end
 
 	def call
 		@client.create_gist(gist_params)
 	end
-
-	# def self.client
-	# 	@@client
-	# end
 
 	private
 
@@ -35,6 +30,10 @@ class GistQuestionService
 			}
 		}
 	end
+
+  def success?
+    @gist_question_service.client.last_response.status == 201
+  end
 
 	def gist_content
 		content = [@question.body]
