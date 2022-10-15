@@ -14,6 +14,10 @@ class GistQuestionService
 		@client.create_gist(gist_params)
 	end
 
+  def success?
+    self.client.last_response.status == 201
+  end
+
 	private
 
 	Octokit.configure do |c|
@@ -30,10 +34,6 @@ class GistQuestionService
 			}
 		}
 	end
-
-  def success?
-    @gist_question_service.client.last_response.status == 201
-  end
 
 	def gist_content
 		content = [@question.body]

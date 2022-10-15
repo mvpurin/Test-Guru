@@ -25,7 +25,7 @@ class TestPassagesController < ApplicationController
     @gist_question_service = GistQuestionService.new(@test_passage.current_question)
     result = @gist_question_service.call
 
-     if success?
+     if @gist_question_service.success?
        @test_passage.user.gists.create(question_info: result.to_json, url: result.url, user_id: current_user.id, question_id: @test_passage.current_question_id)
        flash.notice = t('test_passages.gist.success', url: @gist_question_service.client.last_response.data.url).html_safe
      else
