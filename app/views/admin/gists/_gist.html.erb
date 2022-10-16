@@ -1,0 +1,6 @@
+  <%= content_tag :tr do %>
+    <%= content_tag(:td, link_to("#{Question.find(id=gist.question_id).body.truncate(27)}", 
+    admin_question_path(gist.question_id))) %>
+    <%= content_tag(:td, link_to("See info", admin_gist_path(gist))) %>
+    <%= content_tag :td, User.find(id=gist.user_id).email %>
+  <% end %>

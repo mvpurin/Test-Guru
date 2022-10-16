@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
-  
+
   get :about, to: 'about#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :test_passages, only: %i[show update] do
     member do
       get :result
+      post :gist
     end
   end
 
@@ -26,7 +27,9 @@ Rails.application.routes.draw do
       resources :questions, shallow: true
         resources :answers, shallow: true
       end
+      resources :gists
   end
 
   root to: 'main#index'
+
 end

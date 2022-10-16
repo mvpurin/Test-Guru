@@ -1,7 +1,7 @@
 class Admin::TestsController < Admin::BaseController
 
   before_action :find_test, only: :destroy
-  
+
   def index
     @tests = Test.all
   end

@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   around_action :hello, only: :after_sign_in_path_for
 
-
   def after_sign_in_path_for(resource)
     if resource.admin?
     admin_tests_path
