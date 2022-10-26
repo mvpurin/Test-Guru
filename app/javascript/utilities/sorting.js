@@ -12,9 +12,17 @@ function sortRowsByTitle() {
   var rows = table.querySelectorAll('tr')
   var sortedRows = []
 
-  // selected all table rows except first one which is the header,
-  //and two lasts, which are 'New test' and 'Gists list' buttoms
-  for (var i = 2; i < rows.length - 2; i++) {
+  //count the amount of table cells with text
+  var text_field_counter = 0
+  for (var i = 1; i < rows.length; i++) {
+    if (rows[i].querySelector('td').classList.contains('text-field')) {
+      text_field_counter++
+    } else {
+      text_field_counter = text_field_counter
+    }
+  }
+
+  for (var i = 1; i < text_field_counter + 1; i++) {
     sortedRows.push(rows[i])
   }
 
@@ -32,13 +40,24 @@ function sortRowsByTitle() {
 
   sortedTable.classList.add('table')
   sortedTable.appendChild(rows[0])
-  sortedTable.appendChild(rows[1])
 
   for (var i = 0; i < sortedRows.length; i++) {
     sortedTable.appendChild(sortedRows[i])
   }
-  sortedTable.appendChild(rows[rows.length - 2])
-  sortedTable.appendChild(rows[rows.length - 1])
+
+  //Check if there are some more cells after text cells and add them
+  if (text_field_counter + 1 < rows.length) {
+    for (var i = 1; i < (rows.length - text_field_counter); i++) {
+      sortedTable.appendChild(rows[rows.length - i])
+    }
+  }
+
+  console.log(text_field_counter)
+  console.log(rows.length)
+  console.log(rows.length - text_field_counter - 1)
+
+  // sortedTable.appendChild(rows[rows.length - 2])
+  // sortedTable.appendChild(rows[rows.length - 1])
 
   table.parentNode.replaceChild(sortedTable, table)
 }

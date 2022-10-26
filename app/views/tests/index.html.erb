@@ -3,13 +3,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"><%= t('.title') %></th>
-          <th scope="col"><%= t('.number') %></th>
+          <th class="col sort-by-title pointer"><%= t('.title') %>
+          <%= octicon 'arrow-up', class: 'text-success hide' %>
+          <%= octicon 'arrow-down', class: 'text-success hide' %>
+          </th>
+          <th class="col"><%= t('.number') %></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= render @tests %></td>
+          <%= render @tests %>
         </tr>
       </tbody>
     </table>
