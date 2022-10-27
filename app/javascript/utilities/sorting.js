@@ -52,13 +52,6 @@ function sortRowsByTitle() {
     }
   }
 
-  console.log(text_field_counter)
-  console.log(rows.length)
-  console.log(rows.length - text_field_counter - 1)
-
-  // sortedTable.appendChild(rows[rows.length - 2])
-  // sortedTable.appendChild(rows[rows.length - 1])
-
   table.parentNode.replaceChild(sortedTable, table)
 }
 
