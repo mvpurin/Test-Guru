@@ -1,20 +1,20 @@
 document.addEventListener('turbolinks:load', function() {
-  var control = document.querySelector('.sort-by-title')
+  let control = document.querySelector('.sort-by-title')
 
   if (control) {control.addEventListener('click', sortRowsByTitle)}
 })
 
 function sortRowsByTitle() {
-  var table = document.querySelector('table')
+  let table = document.querySelector('table')
 
   // NodeList
   // https://developer.mozilla.org/ru/docs/Web/API/NodeList
-  var rows = table.querySelectorAll('tr')
-  var sortedRows = []
+  let rows = table.querySelectorAll('tr')
+  let sortedRows = []
 
   //count the amount of table cells with text
-  var text_field_counter = 0
-  for (var i = 1; i < rows.length; i++) {
+  let text_field_counter = 0
+  for (let i = 1; i < rows.length; i++) {
     if (rows[i].querySelector('td').classList.contains('text-field')) {
       text_field_counter++
     } else {
@@ -22,7 +22,7 @@ function sortRowsByTitle() {
     }
   }
 
-  for (var i = 1; i < text_field_counter + 1; i++) {
+  for (let i = 1; i < text_field_counter + 1; i++) {
     sortedRows.push(rows[i])
   }
 
@@ -36,18 +36,18 @@ function sortRowsByTitle() {
     this.querySelector('.octicon-arrow-up').classList.add('hide')
   }
 
-  var sortedTable = document.createElement('table')
+  let sortedTable = document.createElement('table')
 
   sortedTable.classList.add('table')
   sortedTable.appendChild(rows[0])
 
-  for (var i = 0; i < sortedRows.length; i++) {
+  for (let i = 0; i < sortedRows.length; i++) {
     sortedTable.appendChild(sortedRows[i])
   }
 
   //Check if there are some more cells after text cells and add them
   if (text_field_counter + 1 < rows.length) {
-    for (var i = 1; i < (rows.length - text_field_counter); i++) {
+    for (let i = 1; i < (rows.length - text_field_counter); i++) {
       sortedTable.appendChild(rows[rows.length - i])
     }
   }
@@ -56,8 +56,8 @@ function sortRowsByTitle() {
 }
 
 function compareRowsAsc(row1, row2) {
-  var testTitle1 = row1.querySelector('td').textContent
-  var testTitle2 = row2.querySelector('td').textContent
+  let testTitle1 = row1.querySelector('td').textContent
+  let testTitle2 = row2.querySelector('td').textContent
 
   if (testTitle1 < testTitle2) {return -1}
   if (testTitle1 > testTitle2) {return 1}
@@ -65,8 +65,8 @@ function compareRowsAsc(row1, row2) {
 }
 
 function compareRowsDesc(row1, row2) {
-  var testTitle1 = row1.querySelector('td').textContent
-  var testTitle2 = row2.querySelector('td').textContent
+  let testTitle1 = row1.querySelector('td').textContent
+  let testTitle2 = row2.querySelector('td').textContent
 
   if (testTitle1 < testTitle2) {return 1}
   if (testTitle1 > testTitle2) {return -1}
