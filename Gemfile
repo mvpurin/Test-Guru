@@ -29,9 +29,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise', '~> 4.0'
-
 gem 'faraday'
-
+#Client for gists creation
 gem 'octokit', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -40,6 +39,7 @@ gem 'sassc', '~>2.1.0'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'octicons_helper'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

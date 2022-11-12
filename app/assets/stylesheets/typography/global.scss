@@ -1,0 +1,25 @@
+.pointer {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.input-green {
+  border-color: green;
+}
+
+.input-red {
+  border-color: red;
+}
+
+.success:after {
+  content: "success";
+  color: green;
+}
+
+.failed:after {
+  content: "failed";
+  color: red;
+}
