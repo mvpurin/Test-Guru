@@ -1,9 +1,16 @@
 <tr>
-  <td class="text-field"><%= test.title %></td>
-  <td><%= test.level %></td>
-  <td><%= test.questions.size %></td>
-  <td><%= link_to t('admin.tests.index.edit'), admin_test_questions_path(test), class: "btn btn-warning" %></td>
-  <td><%= link_to t('admin.tests.index.delete'),
+  <td class="text-field">
+    <%= content_tag :span, test.title, class: 'test-title', data: {test_id: test.id} %>
+    <%= render 'form_inline', test: test == @test ? @test : test%>
+  </td>
+  <td class="align-middle"><%= test.level %></td>
+  <td class="align-middle"><%= test.questions.size %></td>
+  <td class="align-middle"><%= link_to t('admin.tests.index.edit'),
+                                      admin_test_questions_path(test),
+                                      data: {test_id: test.id},
+                                      class: "form-inline-link" %>
+  </td>
+  <td class="align-middle"><%= link_to t('admin.tests.index.delete'),
                   admin_test_path(test),
                   class: "btn btn-danger",
                   method: :delete,

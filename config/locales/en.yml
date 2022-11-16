@@ -78,3 +78,5 @@ en:
         edit: "Edit"
         delete: "Delete"
         gists: "See gists list"
+      form_inline:
+        submit: "Ok"
