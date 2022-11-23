@@ -23,3 +23,17 @@
   content: "failed";
   color: red;
 }
+
+#progressBar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+}
+
+#barStatus {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: #25F;
+}
