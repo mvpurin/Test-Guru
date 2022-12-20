@@ -3,7 +3,6 @@ document.addEventListener('turbolinks:load', function() {
   const progressNext = document.getElementById("next_button");
 
   if (progressBar) {
-    // progressNext.addEventListener('click', move);
     window.addEventListener('load', move);
   }
 })
@@ -13,9 +12,6 @@ function move() {
   let active = barStatus.dataset.questionCounter;
   let steps = barStatus.dataset.questionCount;
 
-  updateBarStatus(barStatus,steps,active);
+  barStatus.style.width = (active / steps) * 100 + "%";
 
-  function updateBarStatus(barStatus,steps,active) {
-     barStatus.style.width = (active / steps) * 100 + "%";
-  }
 }
