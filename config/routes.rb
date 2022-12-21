@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tests, shallow: true do
+      patch :update_inline, on: :member
       resources :questions, shallow: true
         resources :answers, shallow: true
       end
