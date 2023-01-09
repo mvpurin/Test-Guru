@@ -15,6 +15,11 @@ class Test < ApplicationRecord
     find_test_by_cat(category).order('tests.title DESC').pluck(:title)
   end
 
+  def self.ready?
+    tests = Question.joins("INNER JOIN answers ON answers.question_id = questions.id").distinct.pluck(:test_id).sort
+    Test.where(id: tests)
+  end
+
   scope :easy, -> {where(level: 0..1)}
   scope :normal, -> {where(level: 2..4)}
   scope :hard, -> {where(level: 5..Float::INFINITY)}

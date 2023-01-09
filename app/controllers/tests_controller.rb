@@ -2,7 +2,7 @@ class TestsController < ApplicationController
   before_action :set_tests, only: :index
 
   def index
-    @tests = test_not_empty?
+    @tests = Test.ready?
   end
 
   def start
@@ -15,10 +15,6 @@ class TestsController < ApplicationController
 
   def set_tests
     @tests = Test.all
-  end
-
-  def test_not_empty?
-    @tests.select {|test| test.questions.size > 0}
   end
 
 end
