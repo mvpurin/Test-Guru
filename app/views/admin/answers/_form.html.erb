@@ -12,7 +12,7 @@
       </p>
 
       <p><%= form.submit class: "btn btn-success" %></p>
-      <%= link_to 'Back', admin_question_answers_path(@question) %>
+      <%= link_to 'Back', admin_question_answers_path(@answer.question_id) %>
     <% end %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 class Admin::AnswersController < Admin::BaseController
 
   before_action :find_question, only: [:new, :create, :index]
-  before_action :find_answer, only: :destroy
+  before_action :find_answer, only: [:destroy, :edit, :update, :show]
 
   def index
 
@@ -13,7 +13,7 @@ class Admin::AnswersController < Admin::BaseController
 
   def update
     if @answer.update(answer_params)
-      redirect_to admin_question_path(@question)
+      redirect_to admin_question_answers_path(@answer.question_id)
     else
       render :edit
     end

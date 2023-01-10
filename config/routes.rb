@@ -23,12 +23,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :tests, shallow: true do
+    resources :tests do
       patch :update_inline, on: :member
-      resources :questions, shallow: true
+      resources :questions, shallow: true do
+        resources :answers
       end
-    resources :questions, shallow: true do
-      resources :answers
     end
       resources :gists
   end
