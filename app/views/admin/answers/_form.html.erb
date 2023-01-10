@@ -1,0 +1,18 @@
+<div class="row justify-content-center mt-3">
+  <div class="col col-md-4">
+    <%= render 'shared/errors', resource: @answer %>
+    <%= form_with model: [:admin, @question, @answer], local: true do |form| %>
+      <p>
+        <%= form.label :body %>
+        <%= form.text_field :body %>
+      </p>
+      <p>
+        <%= form.check_box :correct %>
+        <%= form.label :correct, "correct" %>
+      </p>
+
+      <p><%= form.submit class: "btn btn-success" %></p>
+      <%= link_to 'Back', admin_question_answers_path(@question) %>
+    <% end %>
+  </div>
+</div>
