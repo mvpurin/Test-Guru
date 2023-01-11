@@ -34,6 +34,8 @@ en:
   back: "Back"
   confirm: "Are you sure?"
   logout: "Logout"
+  true: "Yes"
+  false: "No"
 
   helpers:
     submit:
@@ -78,5 +80,7 @@ en:
         edit: "Edit"
         delete: "Delete"
         gists: "See gists list"
+        test_list: "Add to user's test list"
+        questions: "Questions"
       form_inline:
         submit: "Ok"

@@ -5,7 +5,8 @@
   </td>
   <td class="align-middle"><%= test.level %></td>
   <td class="align-middle"><%= test.questions.size %></td>
-  <td class="align-middle"><%= link_to "Questions", admin_test_questions_path(test) %></td>
+  <td class="align-middle"><%= t(test.ready) %></td>
+  <td class="align-middle"><%= link_to t('admin.tests.index.questions'), admin_test_questions_path(test) %></td>
   <td class="align-middle"><%= link_to t('admin.tests.index.edit'),
                                       edit_admin_test_path(test),
                                       data: {test_id: test.id},

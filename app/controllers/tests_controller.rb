@@ -1,8 +1,7 @@
 class TestsController < ApplicationController
-  before_action :set_tests, only: :index
 
   def index
-    @tests = Test.ready?
+    @tests = Test.where(ready: 1)
   end
 
   def start
@@ -12,9 +11,5 @@ class TestsController < ApplicationController
   end
 
   private
-
-  def set_tests
-    @tests = Test.all
-  end
 
 end
