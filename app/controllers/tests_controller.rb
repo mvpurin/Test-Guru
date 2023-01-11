@@ -1,7 +1,7 @@
 class TestsController < ApplicationController
 
   def index
-    @tests = Test.where(ready: 1)
+    @tests = Test.published
   end
 
   def start

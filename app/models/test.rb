@@ -18,6 +18,7 @@ class Test < ApplicationRecord
   scope :easy, -> {where(level: 0..1)}
   scope :normal, -> {where(level: 2..4)}
   scope :hard, -> {where(level: 5..Float::INFINITY)}
+  scope :published, -> {where(ready: true)}
 
   validates :title, presence: true, uniqueness: {scope: :level}
   validates :level, numericality: {only_integer: true, greater_than_or_equal_to: 1}
