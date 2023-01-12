@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load', function() {
 })
 
 function formInlineLinkHandler(event) {
-  event.preventDefault()
+  // event.preventDefault()
 
   var testId = this.dataset.testId
   formInlineHandler(testId)

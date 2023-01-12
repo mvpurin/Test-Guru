@@ -1,7 +1,7 @@
-class TestsController < ApplicationController 
-  
+class TestsController < ApplicationController
+
   def index
-    @tests = Test.all
+    @tests = Test.published
   end
 
   def start
@@ -9,5 +9,7 @@ class TestsController < ApplicationController
     current_user.tests.push(@test)
     redirect_to current_user.test_passage(@test)
   end
-  
+
+  private
+
 end

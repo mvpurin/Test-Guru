@@ -1,5 +1,5 @@
 <tr>
-  <td class="text-field"><%= test.title %></td>
-  <td><%= test.questions.size %></td>
+  <%= content_tag :td, test.title, class: "text-field" %>
+  <%= content_tag :td, test.questions.size %>
   <td><%= button_to t('tests.index.start'), start_test_path(test), class: 'btn btn-primary' %></td>
 </tr>

@@ -3,6 +3,8 @@ ru:
   back: "Назад"
   confirm: "Вы уверены?"
   logout: "Выход"
+  true: "Да"
+  false: "Нет"
 
   helpers:
     submit:
@@ -47,5 +49,7 @@ ru:
         edit: "Редактировать"
         delete: "Удалить"
         gists: "Список гистов пользователей"
+        test_list: "В списке тестов пользователя"
+        questions: "Вопросы"
       form_inline:
         submit: "Ок"
