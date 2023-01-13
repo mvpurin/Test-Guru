@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :badges, only: %i[index show]
+
   resources :test_passages, only: %i[show update] do
     member do
       get :result
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
       end
     end
       resources :gists
+      resources :badges
   end
 
   root to: 'main#index'

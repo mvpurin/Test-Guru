@@ -82,5 +82,6 @@ en:
         gists: "See gists list"
         test_list: "Add to user's test list"
         questions: "Questions"
+        badges: "See badges list"
       form_inline:
         submit: "Ok"
