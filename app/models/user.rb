@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :test_passages
   has_many :tests, through: :test_passages
   has_many :gists
-  has_many :badges, through: :test_passages
+  has_many :user_badges
+  has_many :badges, through: :user_badges
   has_many :created_badges, class_name: 'Badge', foreign_key: 'author_id', dependent: :destroy
 
   def find_test_by_level(level)
@@ -25,6 +26,26 @@ class User < ApplicationRecord
 
   def admin?
     self.type == "Admin"
+  end
+
+  def completed_tests
+    @tests_ids = self.passed_tests
+    tests = Test.find(@tests_ids)
+    titles = []
+    tests.map {|test| titles << test.title}
+    titles.join("<br>").html_safe
+  end
+
+  def add_badge?
+    @tests_ids = self.passed_tests
+    case @tests_ids.uniq.length
+    when 1
+      self.badges.push(Badge.beginner)
+    when Test.all.size / 2
+      self.badges.push(Badge.advanced)
+    when Test.all.size
+      self.badges.push(Badge.professional)
+    end
   end
 
 end

@@ -14,5 +14,18 @@
         <%= render @tests %>
       </tbody>
     </table>
+    <table>
+      <thead>
+        Passed tests:
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= current_user.completed_tests %></td
+        </tr>
+        <tr>
+          <td><%= link_to "Badges", badges_path %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
