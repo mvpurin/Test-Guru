@@ -1,1 +1,18 @@
-<%= current_user.badges %>
+<div class="row justify-content-center mt-3">
+  <div class="col col-md-4">
+    <table class="table">
+      <thead>
+        <tr align="center">
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= render @badges %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Back', tests_path %>
+  </div>
+</div>
