@@ -10,6 +10,9 @@
         <%= form.label :body %>
         <%= form.text_field :body %>
       </p>
+      <p>
+        <%= form.file_field :picture %>
+      </p>
 
       <p><%= form.submit class: "btn btn-success" %></p>
       <%= link_to 'Back', admin_badges_path %>

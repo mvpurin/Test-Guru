@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_15_172821) do
+ActiveRecord::Schema.define(version: 2023_01_16_081706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2023_01_15_172821) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id"
+    t.string "picture"
     t.index ["author_id"], name: "index_badges_on_author_id"
   end
 
