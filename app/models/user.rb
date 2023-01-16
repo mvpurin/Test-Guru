@@ -45,7 +45,7 @@ class User < ApplicationRecord
       self.badges.push(Badge.advanced)
     when Test.all.size
       self.badges.push(Badge.professional)
-    end
+    end  
   end
 
 end
