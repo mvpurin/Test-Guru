@@ -14,12 +14,7 @@ class TestPassagesController < ApplicationController
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
-      user = User.find_by(id: current_user.id)
-      user.passed_tests.push(@test_passage.test_id) if @test_passage.pass_the_test?
-      user.save
-
-      user.add_badge?
-      user.save
+      BadgeService.new(current_user,@test_passage.test_id).add_badge if @test_passage.pass_the_test?
 
       TestsMailer.completed_test(@test_passage).deliver_now
       redirect_to result_test_passage_path(@test_passage)

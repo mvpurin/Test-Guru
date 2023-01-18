@@ -28,24 +28,15 @@ class User < ApplicationRecord
     self.type == "Admin"
   end
 
-  def completed_tests
-    @tests_ids = self.passed_tests
-    tests = Test.find(@tests_ids)
-    titles = []
-    tests.map {|test| titles << test.title}
-    titles.join("<br>").html_safe
+  def passed_tests
+    @arr = TestPassage.all.map {|test_passage| test_passage.test_id if test_passage.user_id == self.id && test_passage.pass_the_test?}
+    @arr = @arr.compact
   end
 
-  def add_badge?
-    @tests_ids = self.passed_tests
-    case @tests_ids.uniq.length
-    when 1
-      self.badges.push(Badge.beginner)
-    when Test.all.size / 2
-      self.badges.push(Badge.advanced)
-    when Test.all.size
-      self.badges.push(Badge.professional)
-    end  
+  def passed_tests_counter(passed_tests)
+    hash = Test.all.each_with_object(Hash.new 0) {|test, hash| hash[test.id] = 0}
+    hash2 = passed_tests.each_with_object(Hash.new 0) {|passed_test, counter| counter[passed_test] += 1}
+    hash.merge(hash2)
   end
 
 end

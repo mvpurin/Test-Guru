@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_16_081706) do
+ActiveRecord::Schema.define(version: 2023_01_15_172821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 2023_01_16_081706) do
   create_table "badges", force: :cascade do |t|
     t.string "title"
     t.string "body"
+    t.string "picture"
+    t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "author_id"
-    t.string "picture"
     t.index ["author_id"], name: "index_badges_on_author_id"
   end
 
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 2023_01_16_081706) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "type", default: "User", null: false
-    t.integer "passed_tests", default: [], array: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

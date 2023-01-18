@@ -10,5 +10,6 @@ class Badge < ApplicationRecord
   scope :beginner, -> {where(title: "Beginner")}
   scope :advanced, -> {where(title: "Advanced")}
   scope :professional, -> {where(title: "Professional")}
+  scope :double, -> {where(title: "Double")}
 
 end
