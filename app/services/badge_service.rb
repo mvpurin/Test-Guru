@@ -22,7 +22,6 @@ class BadgeService
   end
 
   def add_badge
-    byebug
     @user.badges.push(Badge.beginner) if @tests_count == 1
     @user.badges.push(Badge.advanced) if @tests_count == Test.all.size / 2
     @user.badges.push(Badge.professional) if @tests_count == Test.all.size
