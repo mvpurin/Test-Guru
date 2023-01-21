@@ -29,14 +29,12 @@ class User < ApplicationRecord
   end
 
   def passed_tests
-    @arr = TestPassage.all.map {|test_passage| test_passage.test_id if test_passage.user_id == self.id && test_passage.pass_the_test?}
-    @arr = @arr.compact
+    arr = TestPassage.where(passed?: true, user_id: self.id).pluck(:test_id)
   end
 
-  def passed_tests_counter(passed_tests)
-    hash = Test.all.each_with_object(Hash.new 0) {|test, hash| hash[test.id] = 0}
-    hash2 = passed_tests.each_with_object(Hash.new 0) {|passed_test, counter| counter[passed_test] += 1}
-    hash.merge(hash2)
+  def passed_tests_counter
+    hash = TestPassage.where(user_id: self.id).select(:test_id).group_by {|test_passage| test_passage.test_id}
+    hash = hash.keys.each_with_object (Hash.new 0) {|key, counter| counter[key] = hash[key].size}
   end
 
 end

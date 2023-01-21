@@ -1,45 +1,40 @@
 class BadgeService
 
-  def initialize(user,test_id)
-    @user = user
-    @test_id = test_id
-    @test = Test.find(@test_id)
+  def initialize(test_passage)
+    @test_passage = test_passage
+    @user = User.find(@test_passage.user_id)
+    @test = Test.find(@test_passage.test_id)
     @category = Category.find(@test.category_id)
-    @passed_tests = @user.passed_tests_counter(@user.passed_tests) #current amount of passed tests by user
-    @tests_count = @user.passed_tests.uniq.size
+    @passed_tests = @user.passed_tests_counter #current amount of passed tests by user
   end
 
   def current_category
-    arr = []
-    @passed_tests.each_key {|key| arr << key if @passed_tests[key] == 1}
-    @category.tests.ids - arr
+    @category.tests.ids - TestPassage.where(user_id: @user.id, test_id: @category.tests.ids, passed?: true).pluck(:test_id)
   end
 
   def current_level
-    arr = []
-    @passed_tests.each_key {|key| arr << key if @passed_tests[key] == 1}
-    Test.where(level: @test.level).ids - arr
+    Test.where(level: @test.level).ids - TestPassage.where(user_id: @user.id, passed?: true, test_id: Test.where(level: @test.level)).pluck(:test_id)
+  end
+
+  def check_passed_category(badge)
+    current_category.empty? && badge.params == @category.title
+  end
+
+  def check_number_of_passed_tests(badge)
+    @user.passed_tests.uniq.size == eval(badge.params)
+  end
+
+  def check_first_try(*args)
+    @passed_tests[@test.id] == 1
+  end
+
+  def check_passed_level(badge)
+    current_level.empty? && badge.params == @test.level
   end
 
   def add_badge
-    @user.badges.push(Badge.beginner) if @tests_count == 1
-    @user.badges.push(Badge.advanced) if @tests_count == Test.all.size / 2
-    @user.badges.push(Badge.professional) if @tests_count == Test.all.size
-
-    if @passed_tests[@test_id] == 2
-      @user.badges.push(Badge.double)
-    end
-
-    if @passed_tests[@test_id] == 1
-      @user.badges.push(Badge.first_try)
-    end
-
-    if current_category.empty?
-      @user.badges.push(Badge.category)
-    end
-
-    if current_level.empty?
-      @user.badges.push(Badge.level)
+    Badge.all.map do |badge|
+      @user.badges.push(badge) if send(badge.rule, badge)
     end
   end
 

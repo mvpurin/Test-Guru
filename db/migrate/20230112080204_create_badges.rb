@@ -4,7 +4,9 @@ class CreateBadges < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :body
       t.string :picture
-      t.references :author, foreign_key: {to_table: :users} 
+      t.string :rule
+      t.string :params
+      t.references :author, foreign_key: {to_table: :users}
 
       t.timestamps
     end
