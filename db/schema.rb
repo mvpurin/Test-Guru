@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_01_20_135606) do
     t.integer "correct_questions", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "passed?", default: false
+    t.boolean "passed", default: false
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"
     t.index ["user_id"], name: "index_test_passages_on_user_id"
@@ -132,4 +132,6 @@ ActiveRecord::Schema.define(version: 2023_01_20_135606) do
   add_foreign_key "test_passages", "users"
   add_foreign_key "tests", "categories"
   add_foreign_key "tests", "users", column: "author_id"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end

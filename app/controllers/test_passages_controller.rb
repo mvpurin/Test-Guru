@@ -15,7 +15,7 @@ class TestPassagesController < ApplicationController
 
     if @test_passage.completed?
       if @test_passage.pass_the_test?
-        @test_passage.update(passed?: true)
+        @test_passage.update(passed: true)
         BadgeService.new(@test_passage).add_badge
       end
 
