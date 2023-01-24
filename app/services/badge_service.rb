@@ -18,9 +18,9 @@ class BadgeService
     category = @test_passage.test.category
     return if params != category.title
 
-    all_tests_from_category = category.tests.ids.sort
+    all_tests_from_category = category.tests.order(id: :asc).ids
     passed_tests_from_category = TestPassage.where(user_id: @user.id, test_id:
-      all_tests_from_category, passed: true).pluck(:test_id).uniq.sort
+      all_tests_from_category, passed: true).order(test_id: :asc).pluck(:test_id).uniq
     all_tests_from_category == passed_tests_from_category
   end
 
@@ -40,15 +40,16 @@ class BadgeService
   end
 
   def check_passed_level(params)
+
     return if params.to_i != @test.level
 
-    all_tests_from_level = Test.where(level: @test.level).ids.sort
+    all_tests_from_level = Test.where(level: @test.level).order(id: :asc).ids
     passed_tests_from_level = find_tests_by_level
     all_tests_from_level == passed_tests_from_level && params.to_i == @test.level
   end
 
   def find_tests_by_level
-    TestPassage.where(user_id: @user.id, passed: true).joins(:test).where(tests: { level: @test.level }).pluck(:test_id).sort
+    TestPassage.where(user_id: @user.id, passed: true).joins(:test).where(tests: { level: @test.level }).order(test_id: :asc).pluck(:test_id)
   end
 
 end
