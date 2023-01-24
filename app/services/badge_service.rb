@@ -15,9 +15,13 @@ class BadgeService
   private
 
   def check_passed_category(params)
-    @category = @test_passage.test.category
-    return if params != @category.title
-    current_category && params == @category.title
+    category = @test_passage.test.category
+    return if params != category.title
+
+    all_tests_from_category = category.tests.ids.sort
+    passed_tests_from_category = TestPassage.where(user_id: @user.id, test_id:
+      all_tests_from_category, passed: true).pluck(:test_id).uniq.sort
+    all_tests_from_category == passed_tests_from_category
   end
 
   def check_number_of_passed_tests(params)
@@ -32,30 +36,19 @@ class BadgeService
 
   def check_first_try(*args)
     test_passage = TestPassage.where(user_id: @user.id, test_id: @test.id)
-    test_passage.pluck(:test_id).size == 1 && test_passage.last.passed == true
+    test_passage.pluck(:test_id).size == 1 && @test_passage.passed == true
   end
 
   def check_passed_level(params)
     return if params.to_i != @test.level
-    current_level && params.to_i == @test.level
-  end
 
-  def current_category
-    @category = @test_passage.test.category
-    all_tests_from_category = @category.tests.ids
-    passed_tests_from_category = TestPassage.where(user_id: @user.id, test_id: all_tests_from_category, passed: true).pluck(:test_id).uniq
-    all_tests_from_category == passed_tests_from_category
-  end
-
-  def current_level
-    all_tests_from_level = Test.where(level: @test.level).ids
+    all_tests_from_level = Test.where(level: @test.level).ids.sort
     passed_tests_from_level = find_tests_by_level
-    all_tests_from_level == passed_tests_from_level
+    all_tests_from_level == passed_tests_from_level && params.to_i == @test.level
   end
 
   def find_tests_by_level
-    Test.joins('INNER JOIN test_passages ON tests.id = test_passages.test_id').where('tests.level = :level AND
-      test_passages.passed = true AND test_passages.user_id = :user_id', level: @test.level, user_id: @user.id).pluck(:id)
+    TestPassage.where(user_id: @user.id, passed: true).joins(:test).where(tests: { level: @test.level }).pluck(:test_id).sort
   end
 
 end
