@@ -3,7 +3,10 @@ class TestPassagesController < ApplicationController
   before_action :set_test_passage, only: %i[show update result gist]
 
   def show
-
+    if @test_passage.time_is_finish?
+      @test_passage.update(passed: false)
+      redirect_to result_test_passage_path(@test_passage)
+    end
   end
 
   def result
@@ -12,7 +15,6 @@ class TestPassagesController < ApplicationController
 
   def update
     @test_passage.accept!(params[:answer_ids])
-
     if @test_passage.completed?
       if @test_passage.pass_the_test?
         @test_passage.update(passed: true)
@@ -31,7 +33,8 @@ class TestPassagesController < ApplicationController
     result = @gist_question_service.call
 
      if @gist_question_service.success?
-       @test_passage.user.gists.create(question_info: result.to_json, url: result.url, user_id: current_user.id, question_id: @test_passage.current_question_id)
+       @test_passage.user.gists.create(question_info: result.to_json, url: result.url,
+         user_id: current_user.id, question_id: @test_passage.current_question_id)
        flash.notice = t('test_passages.gist.success', url: @gist_question_service.client.last_response.data.url).html_safe
      else
        flash.alert = t('test_passages.gist.failure')
