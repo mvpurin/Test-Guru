@@ -21,6 +21,10 @@
         <%= content_tag :div, '', id: "barStatus", data: {question_counter: @test_passage.question_counter, question_count: @test_passage.test.questions.count} %>
       </div>
 
-    <p>Question <%= @test_passage.question_counter %> / <%= @test_passage.test.questions.count %> </p>
+      <p>Question <%= @test_passage.question_counter %> / <%= @test_passage.test.questions.count %> </p>
+
+      <% if @test_passage.test.timer %>
+          <%= content_tag :div, '', id: "timer", data: {timer: @test_passage.timer_test_time_finish.to_s.sub(" +", "+")} %>
+        <% end %>
   </div>
 </div>

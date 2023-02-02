@@ -48,7 +48,9 @@ class Admin::TestsController < Admin::BaseController
   private
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id, :ready)
+    params[:test][:timer] = nil if params[:test][:timer] == 0.to_s
+    params.require(:test).permit(:title, :level, :category_id, :ready, :timer)
+
   end
 
   def find_test
