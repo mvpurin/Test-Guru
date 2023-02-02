@@ -3,10 +3,7 @@ class TestPassagesController < ApplicationController
   before_action :set_test_passage, only: %i[show update result gist]
 
   def show
-    # if @test_passage.time_is_finish?
-    #   @test_passage.update(passed: false)
-    #   redirect_to result_test_passage_path(@test_passage)
-    # end
+
   end
 
   def result
