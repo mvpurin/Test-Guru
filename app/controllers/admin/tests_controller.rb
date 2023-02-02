@@ -30,7 +30,6 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def update
-    params[:test][:timer] = nil if params[:test][:timer] == 0.to_s
     if @test.update(test_params)
       redirect_to admin_tests_path
     else
@@ -49,7 +48,9 @@ class Admin::TestsController < Admin::BaseController
   private
 
   def test_params
+    params[:test][:timer] = nil if params[:test][:timer] == 0.to_s
     params.require(:test).permit(:title, :level, :category_id, :ready, :timer)
+
   end
 
   def find_test

@@ -21,5 +21,5 @@ class Test < ApplicationRecord
   scope :published, -> {where(ready: true)}
 
   validates :title, presence: true, uniqueness: {scope: :level}
-  validates :level, numericality: {only_integer: true, greater_than_or_equal_to: 1}
+  validates :level, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 end
