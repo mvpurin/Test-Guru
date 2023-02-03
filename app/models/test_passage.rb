@@ -12,7 +12,7 @@ class TestPassage < ApplicationRecord
   end
 
   def accept!(answer_ids)
-    if correct_answer?(answer_ids)
+    if correct_answer?(answer_ids) && !time_is_finish?
       self.correct_questions += 1
     end
 
@@ -29,6 +29,14 @@ class TestPassage < ApplicationRecord
 
   def question_counter
     test.questions.ids.index(current_question.id) + 1
+  end
+
+  def timer_test_time_finish
+    created_at + test.timer.minutes
+  end
+
+  def time_is_finish?
+    test.timer? && timer_test_time_finish.past?
   end
 
   private
