@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: %i[] do
+    resources :badges, only: :index
+  end
+
+  resources :badges, only: :index
+
   resources :test_passages, only: %i[show update] do
     member do
       get :result
@@ -30,6 +36,7 @@ Rails.application.routes.draw do
       end
     end
       resources :gists
+      resources :badges
   end
 
   root to: 'main#index'

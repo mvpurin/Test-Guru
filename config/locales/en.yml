@@ -82,5 +82,7 @@ en:
         gists: "See gists list"
         test_list: "Add to user's test list"
         questions: "Questions"
+        badges: "See badges list"
+        timer: "Timer, min"
       form_inline:
         submit: "Ok"
