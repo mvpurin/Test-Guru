@@ -24,7 +24,7 @@ class TestPassage < ApplicationRecord
   end
 
   def pass_the_test?
-    score >= MINIMUM_MARK
+    score >= MINIMUM_MARK && !time_is_finish?
   end
 
   def question_counter
