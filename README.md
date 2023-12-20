@@ -10,7 +10,7 @@ Ruby on Rails application for testing users in all fields of knowledge
 * [Project status](#project-status)
 
 ## General info
-It is a Ruby on Rails applications which helps users to create new tests and try to pass them with ability of getting awards in case of success.
+It is a Ruby on Rails application which helps users to create new tests and try to pass them with ability of getting awards in case of success.
 
 ## Technologies
 Project is created with:
